@@ -44,8 +44,8 @@ function onDataReceived(text) {
   else if(text.slice(0,4).trim() === 'help'){
     help(text.slice(4).trim());
   }
-  else if(text.trim() === 'add'){
-    add();
+  else if(text.trim().split(" ") [0]==="add"){
+    add(text);
   }
   else if(text.trim() === 'remove'){
     remove();
@@ -116,8 +116,14 @@ let tasks=["chawerma","pizza"];
  *
  * @returns {void}
  */
-function add(){
-
+function add(text){
+  let addMessage=text.slice(4);
+  if(addMessage.length > 0){
+    tasks.push(addMessage.trim())
+  }
+  else{
+    console.log("Please add something")
+  }
 }
 
 /**
