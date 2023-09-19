@@ -41,8 +41,8 @@ function onDataReceived(text) {
   else if(text.slice(0,5).trim() == 'hello'){
     hello(text.slice(5).trim());
   }
-  else if(text.trim() === 'help'){
-    help();
+  else if(text.slice(0,4).trim() === 'help'){
+    help(text.slice(4).trim());
   }
   else{
     unknownCommand(text);
@@ -93,8 +93,12 @@ function quit(){
  *
  * @returns {void}
  */
-function help(){
-  console.log(`enter "hello" for greeting\n hello with no argument will return hello with something\n documented list,add,remove`);
+function help(y){
+  if(y === ""){
+    console.log("help!")
+  }else{
+    console.log(`help ${y}!`)
+  }
 }
 
 
