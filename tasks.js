@@ -47,8 +47,8 @@ function onDataReceived(text) {
   else if(text.trim().split(" ") [0]==="add"){
     add(text);
   }
-  else if(text.trim() === 'remove'){
-    remove();
+  else if(text.trim().slice(0,6) == 'remove'){
+    remove(text);
   }
   else if(text.trim() === 'list'){
     list();
@@ -131,8 +131,14 @@ function add(text){
  *
  * @returns {void}
  */
-function remove(){
-  
+function remove(text){
+  let x= text.trim().split(' ')[1] ;
+  if(x == null){
+    tasks.pop();
+  }
+  else{
+    tasks.splice(x,1)
+  }
 }
 
 /**
