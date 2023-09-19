@@ -40,6 +40,9 @@ function onDataReceived(text) {
   else if(text === 'hello\n'){
     hello();
   }
+  else if(text === 'help\n'){
+    help();
+  }
   else{
     unknownCommand(text);
   }
@@ -77,6 +80,17 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
+
+/**
+ * Help the application
+ *
+ * @returns {void}
+ */
+function help(){
+  console.log(`enter "hello" for greeting\n hello with no argument will return hello with something\n documented list,add,remove`);
+}
+
+
 
 // The following line starts the application
 startApp("Codi")
