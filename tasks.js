@@ -74,7 +74,6 @@ function hello(x){
   }else{
     console.log(`hello ${x}!`)
   }
-  
 }
 
 
@@ -100,6 +99,37 @@ function help(y){
     console.log(`help ${y}!`)
   }
 }
+
+/**
+ * Add Function
+ *
+ * @returns {void}
+ */
+function add(){
+
+}
+
+/**
+ * Remove Function
+ *
+ * @returns {void}
+ */
+function remove(){
+  
+}
+
+/**
+ * List Function
+ *
+ * @returns {void}
+ */
+function list(){
+  
+}
+
+
+
+
 
 
 
