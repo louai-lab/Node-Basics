@@ -44,6 +44,15 @@ function onDataReceived(text) {
   else if(text.slice(0,4).trim() === 'help'){
     help(text.slice(4).trim());
   }
+  else if(text.trim() === 'add'){
+    add();
+  }
+  else if(text.trim() === 'remove'){
+    remove();
+  }
+  else if(text.trim() === 'list'){
+    list();
+  }
   else{
     unknownCommand(text);
   }
@@ -100,6 +109,8 @@ function help(y){
   }
 }
 
+let tasks=["chawerma","pizza"];
+
 /**
  * Add Function
  *
@@ -124,7 +135,9 @@ function remove(){
  * @returns {void}
  */
 function list(){
-  
+  tasks.forEach((e,index) => {
+    console.log(`${index+1}- ${e}`);
+  });
 }
 
 
