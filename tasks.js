@@ -136,6 +136,8 @@ function remove(text){
   let x= text.trim().split(' ')[1] ;
   if(x == null){
     tasks.pop();
+  }else if(x > tasks.length){
+    console.log("it does not exist")
   }
   else{
     tasks.splice(x,1)
