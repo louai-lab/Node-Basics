@@ -50,6 +50,9 @@ function onDataReceived(text) {
   else if(text.trim().slice(0,6) == 'remove'){
     remove(text);
   }
+  else if(text.trim().slice(0,4) == 'edit'){
+    edit(text);
+  }
   else if(text.trim() === 'list'){
     list();
   }
@@ -110,7 +113,7 @@ function help(y){
 }
 
 
-let tasks=["chawerma","pizza"];
+let tasks=["chawerma","pizza","bread","falefel"];
 
 /**
  * Add Function
@@ -142,6 +145,31 @@ function remove(text){
   else{
     tasks.splice(x,1)
   }
+}
+
+
+
+/**
+ * Add Function
+ *
+ * @returns {void}
+ */
+function edit(text){
+  
+  let newText=text.trim().split(' ');
+  let num= parseInt(newText[1]) ;
+
+  if(newText.length === 1){
+    console.log("error")
+  }
+  else if(newText.length === 2){
+    tasks.pop();
+    tasks.push(newText[1])
+  }
+  else{
+    tasks.splice(num, 1,newText[2]);
+  }
+  
 }
 
 /**
