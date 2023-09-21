@@ -113,7 +113,24 @@ function help(y){
 }
 
 
-let tasks=["chawerma","pizza","bread","falefel"];
+let tasks=[{
+  task: "chawerma",
+  done:true
+  },
+  {
+    task: "falefel",
+    done:true
+    },
+    {
+      task: "suchi",
+      done:false
+      },
+      {
+        task: "rez 3ajej",
+        done:true
+        },
+
+  ];
 
 /**
  * Add Function
@@ -121,9 +138,11 @@ let tasks=["chawerma","pizza","bread","falefel"];
  * @returns {void}
  */
 function add(text){
-  let addMessage=text.slice(4);
+  let addMessage=text.trim().slice(4);
+  let newObject = {task:addMessage , done:false}
+
   if(addMessage.length > 0){
-    tasks.push(addMessage.trim())
+    tasks.push(newObject);
   }
   else{
     console.log("Please add something")
@@ -178,8 +197,18 @@ function edit(text){
  * @returns {void}
  */
 function list(){
+
+  
+
   tasks.forEach((e,index) => {
-    console.log(`${index+1}- ${e}`);
+    if(e.done === true){
+      e.done="[✓]"
+    }
+    else{
+      e.done="[ ]"
+    }
+
+    console.log(`${e.done} - ${index+1} - ${e.task}`);
   });
 }
 
