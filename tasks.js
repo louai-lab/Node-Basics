@@ -10,6 +10,28 @@ const { error } = require('console');
  * @param  {string} name the name of the app
  * @returns {void}
  */
+
+let filePath='database.json';
+const process=require("process");
+const fs = require('fs');
+
+var argument =process.argv;
+if(argument[2]){
+  filePath=argument[2]
+}
+
+let empty=[];
+let newData=JSON.stringify(empty);
+
+if(fs.existsSync(filePath)){
+  console.log("found");
+}
+else{
+  fs.appendFile(filePath,newData,function(err){
+  })
+}
+
+
 async function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
@@ -20,9 +42,9 @@ async function startApp(name){
   const fs = require('fs');
 
   try{
-    await fs.readFile('database.json',{encoding:'utf-8'},(error,loadedString)=>{
+    await fs.readFile(filePath,{encoding:'utf-8'},(error,loadedString)=>{
       tasks=JSON.parse(loadedString);
-      console.log(tasks);
+      // console.log(tasks);
     })
   }
   catch(error){
@@ -114,15 +136,15 @@ function hello(x){
  *
  * @returns {void}
  */
-const fs=require('fs').promises;
+// const fs=require('fs').promises;
 
 async function quit(){
   // const data="this is the first";
 
-  const myTasks=JSON.stringify(tasks)
+  const myTasks=JSON.stringify(tasks);
 
   try{
-    await fs.writeFile('database.json',myTasks,{encoding:'utf-8'});
+    await fs.writeFile(filePath,myTasks,{encoding:'utf-8'});
     console.log('congratulations');
     console.log(myTasks)
   }catch(error){
