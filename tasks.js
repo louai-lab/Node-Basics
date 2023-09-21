@@ -53,6 +53,12 @@ function onDataReceived(text) {
   else if(text.trim().slice(0,4) == 'edit'){
     edit(text);
   }
+  else if(text.trim().split(' ') [0]==='check'){
+    check(text);
+  }
+  else if(text.trim().split(' ') [0]==='uncheck'){
+    unCheck(text);
+  }
   else if(text.trim() === 'list'){
     list();
   }
@@ -139,10 +145,13 @@ let tasks=[{
  */
 function add(text){
   let addMessage=text.trim().slice(4);
+
   let newObject = {task:addMessage , done:false}
+  
 
   if(addMessage.length > 0){
     tasks.push(newObject);
+  
   }
   else{
     console.log("Please add something")
@@ -163,6 +172,43 @@ function remove(text){
   }
   else{
     tasks.splice(x,1)
+  }
+}
+
+/**
+ * Check Function
+ *
+ * @returns {void}
+ */
+function check(text){
+  let x=text.trim().slice(5);
+
+  if(x==="" || x===undefined || x===null || x>tasks.length ||x<=0){
+    console.log("bad input")
+  }
+  else{
+    
+    tasks[x-1].done =true; 
+    
+  }
+}
+
+
+/**
+ * UnCheck Function
+ *
+ * @returns {void}
+ */
+function unCheck(text){
+  let x=text.trim().slice(7);
+
+  if(x==="" || x===undefined || x===null || x>tasks.length ||x<=0){
+    console.log("bad input")
+  }
+  else{
+    
+    tasks[x-1].done =false; 
+    
   }
 }
 
@@ -201,14 +247,10 @@ function list(){
   
 
   tasks.forEach((e,index) => {
-    if(e.done === true){
-      e.done="[✓]"
-    }
-    else{
-      e.done="[ ]"
-    }
-
-    console.log(`${e.done} - ${index+1} - ${e.task}`);
+  
+    let status = "[ ]"
+    if(e.done==true) status="[✓]"
+    console.log(`${status} - ${index+1} - ${e.task}`);
   });
 }
 
