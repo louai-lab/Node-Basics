@@ -1,3 +1,4 @@
+const { error } = require('console');
 
 /**
  * Starts the application
@@ -9,12 +10,25 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
-function startApp(name){
+async function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
   process.stdin.on('data', onDataReceived);
   console.log(`Welcome to ${name}'s application!`)
   console.log("--------------------")
+
+  const fs = require('fs');
+
+  try{
+    await fs.readFile('database.json',{encoding:'utf-8'},(error,loadedString)=>{
+      tasks=JSON.parse(loadedString);
+      console.log(tasks);
+    })
+  }
+  catch(error){
+    console.log("errror",error)
+  }
+
 }
 
 
@@ -100,7 +114,22 @@ function hello(x){
  *
  * @returns {void}
  */
-function quit(){
+const fs=require('fs').promises;
+
+async function quit(){
+  // const data="this is the first";
+
+  const myTasks=JSON.stringify(tasks)
+
+  try{
+    await fs.writeFile('database.json',myTasks,{encoding:'utf-8'});
+    console.log('congratulations');
+    console.log(myTasks)
+  }catch(error){
+    console.error('Errorrr');
+  }
+
+
   console.log('Quitting now, goodbye!')
   process.exit();
 }
@@ -243,8 +272,6 @@ function edit(text){
  * @returns {void}
  */
 function list(){
-
-  
 
   tasks.forEach((e,index) => {
   
